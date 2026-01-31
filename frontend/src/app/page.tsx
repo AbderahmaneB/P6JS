@@ -34,28 +34,28 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen">
       {/* Left side - Login form */}
-      <div className="flex w-full flex-col bg-[#f8f8fb] px-8 py-6 lg:w-1/2">
+      <div className="flex w-full flex-col bg-[#ECEDF9] px-10 py-8 lg:w-1/2">
         {/* Logo */}
         <Logo />
 
         {/* Form container */}
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-md rounded-2xl bg-white p-10 shadow-sm">
-            <h1 className="mb-1 text-2xl font-bold leading-tight text-primary">
+          <div className="w-full max-w-[400px] rounded-2xl bg-white px-10 py-14">
+            <h1 className="text-[28px] font-semibold leading-[1] text-[#0B23F4]">
               Transformez
               <br />
               vos stats en résultats
             </h1>
 
-            <h2 className="mb-8 mt-6 text-lg font-semibold text-text">
+            <h2 className="mb-10 mt-10 text-[18px] font-semibold text-[#20253A]">
               Se connecter
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="username"
-                  className="mb-1.5 block text-sm text-text-light"
+                  className="mb-2 block text-[13px] text-[#74798C]"
                 >
                   Adresse email
                 </label>
@@ -64,15 +64,15 @@ export default function LoginPage() {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary"
+                  className="w-full rounded-lg border border-[#DEDEDE] bg-white px-4 py-3.5 text-[14px] text-[#20253A] outline-none transition-colors focus:border-[#0B23F4]"
                   required
                 />
               </div>
 
-              <div>
+              <div className="mt-6">
                 <label
                   htmlFor="password"
-                  className="mb-1.5 block text-sm text-text-light"
+                  className="mb-2 block text-[13px] text-[#74798C]"
                 >
                   Mot de passe
                 </label>
@@ -81,25 +81,25 @@ export default function LoginPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm text-text outline-none transition-colors focus:border-primary"
+                  className="w-full rounded-lg border border-[#DEDEDE] bg-white px-4 py-3.5 text-[14px] text-[#20253A] outline-none transition-colors focus:border-[#0B23F4]"
                   required
                 />
               </div>
 
               {error && (
-                <p className="text-sm text-red-500">{error}</p>
+                <p className="mt-4 text-[13px] text-red-500">{error}</p>
               )}
 
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full cursor-pointer rounded-full bg-primary py-3 text-sm font-medium text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
+                className="mt-10 w-full cursor-pointer rounded-[10px] bg-[#0B23F4] py-4 text-[14px] font-medium text-white transition-colors hover:bg-[#0919C5] disabled:opacity-60"
               >
                 {isLoading ? "Connexion..." : "Se connecter"}
               </button>
             </form>
 
-            <p className="mt-6 text-sm text-text-light cursor-pointer hover:text-primary transition-colors">
+            <p className="mt-10 cursor-pointer text-[13px] text-[#74798C] transition-colors hover:text-[#0B23F4]">
               Mot de passe oublié ?
             </p>
           </div>
@@ -116,7 +116,7 @@ export default function LoginPage() {
           priority
         />
         {/* Overlay bubble */}
-        <div className="absolute bottom-8 right-8 max-w-xs rounded-full bg-white/80 px-6 py-3 text-xs text-text backdrop-blur-sm">
+        <div className="absolute bottom-8 right-8 max-w-[280px] rounded-full bg-white/80 px-6 py-3 text-[11px] leading-[1.5] text-[#20253A] backdrop-blur-sm">
           Analysez vos performances en un clin d&apos;oeil, suivez vos progrès
           et atteignez vos objectifs.
         </div>
