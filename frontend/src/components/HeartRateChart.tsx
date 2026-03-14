@@ -55,22 +55,23 @@ export default function HeartRateChart({
   const avgBPM = computeAvgBPM(sessions);
 
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm">
+    <div className="flex h-[484px] flex-col rounded-xl bg-white p-6 shadow-sm">
       <div className="mb-1 flex items-center justify-between">
         <h3 className="text-[18px] font-semibold text-[#FF0101]">
           {avgBPM} BPM
         </h3>
-        <div className="flex items-center gap-2 text-[12px] text-[#74798C]">
-          <button className="cursor-pointer hover:text-[#FF0101]">&lt;</button>
+        <div className="flex items-center gap-2 text-[12px] text-[#20253A]">
+          <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-[10px] border border-[#20253A] font-normal">&lt;</button>
           <span>{dateRange}</span>
-          <button className="cursor-pointer hover:text-[#FF0101]">&gt;</button>
+          <button className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-[10px] border border-[#20253A] font-normal">&gt;</button>
         </div>
       </div>
       <p className="mb-6 text-[12px] text-[#74798C]">
         Fréquence cardiaque moyenne
       </p>
-      <ResponsiveContainer width="100%" height={200}>
-        <ComposedChart data={data} barGap={2} barSize={12}>
+      <div className="flex-1">
+      <ResponsiveContainer width="100%" height="100%">
+        <ComposedChart data={data} barGap={4} barSize={20}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis
             dataKey="name"
@@ -104,14 +105,14 @@ export default function HeartRateChart({
             iconType="circle"
             iconSize={8}
             wrapperStyle={{ fontSize: 11, color: "#74798C" }}
-            formatter={(value: string) => {
-              if (value === "min") return "Min";
-              if (value === "max") return "Max BPM";
-              return "Moy BPM";
-            }}
+            payload={[
+              { value: "Min", type: "circle", color: "#FFCDD2" },
+              { value: "Max BPM", type: "circle", color: "#FF0101" },
+              { value: "Moy BPM", type: "circle", color: "#0B23F4" },
+            ]}
           />
-          <Bar dataKey="min" fill="#FFCDD2" radius={[3, 3, 0, 0]} />
-          <Bar dataKey="max" fill="#FF0101" radius={[3, 3, 0, 0]} />
+          <Bar dataKey="min" fill="#FFCDD2" radius={[30, 30, 30, 30]} />
+          <Bar dataKey="max" fill="#FF0101" radius={[30, 30, 30, 30]} />
           <Line
             type="monotone"
             dataKey="avg"
@@ -122,6 +123,7 @@ export default function HeartRateChart({
           />
         </ComposedChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }

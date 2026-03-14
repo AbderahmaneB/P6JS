@@ -59,6 +59,10 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
     (sum, session) => sum + session.duration,
     0
   );
+  const totalCalories = runningData.reduce(
+    (sum, session) => sum + session.caloriesBurned,
+    0
+  );
 
   // Extract user profile information
   const userProfile = {
@@ -68,6 +72,7 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
     age: user.userInfos.age,
     weight: user.userInfos.weight,
     height: user.userInfos.height,
+    gender: user.userInfos.gender,
     profilePicture: user.userInfos.profilePicture,
   };
 
@@ -77,6 +82,7 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
       totalDistance,
       totalSessions,
       totalDuration,
+      totalCalories,
     },
   });
 });

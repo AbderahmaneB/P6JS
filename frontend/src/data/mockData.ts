@@ -17,6 +17,7 @@ export interface UserProfile {
   age: number;
   weight: number;
   height: number;
+  gender: string;
   profilePicture: string;
 }
 
@@ -24,6 +25,7 @@ export interface UserStatistics {
   totalDistance: string;
   totalSessions: number;
   totalDuration: number;
+  totalCalories: number;
 }
 
 export interface UserInfo {
@@ -154,6 +156,10 @@ export function mockGetUserInfo(userId: string): UserInfo | null {
     (sum, s) => sum + s.duration,
     0
   );
+  const totalCalories = user.runningData.reduce(
+    (sum, s) => sum + s.caloriesBurned,
+    0
+  );
 
   return {
     profile: {
@@ -163,12 +169,14 @@ export function mockGetUserInfo(userId: string): UserInfo | null {
       age: user.userInfos.age,
       weight: user.userInfos.weight,
       height: user.userInfos.height,
+      gender: user.userInfos.gender,
       profilePicture: user.userInfos.profilePicture,
     },
     statistics: {
       totalDistance,
       totalSessions,
       totalDuration,
+      totalCalories,
     },
   };
 }

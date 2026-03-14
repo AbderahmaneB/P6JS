@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import WeeklyDistanceChart from "@/components/WeeklyDistanceChart";
 import HeartRateChart from "@/components/HeartRateChart";
@@ -49,6 +50,7 @@ function getLast4WeeksRange(): string {
 }
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { userInfo, recentSessions, thisWeekSessions, isLoading, error } =
     useDashboardData();
 
@@ -85,10 +87,10 @@ export default function DashboardPage() {
   const weeklyGoal = 6;
 
   return (
-    <div className="min-h-screen bg-[#F2F3FF]">
+    <div className="flex min-h-screen flex-col bg-[#F2F3FF]">
       <Header />
 
-      <main className="px-[10%] py-8">
+      <main className="flex-1 px-[10%] py-8">
         {/* AI Coach banner */}
         <div className="mb-8 flex items-center justify-between rounded-2xl bg-white px-8 py-5">
           <div className="flex items-center gap-3">
@@ -102,7 +104,9 @@ export default function DashboardPage() {
               objectifs.
             </p>
           </div>
-          <button className="cursor-pointer whitespace-nowrap rounded-[10px] bg-[#0B23F4] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#0919C5]">
+          <button
+            onClick={() => router.push("/chat")}
+            className="cursor-pointer whitespace-nowrap rounded-[10px] bg-[#0B23F4] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#0919C5]">
             Lancer une conversation
           </button>
         </div>
@@ -168,9 +172,9 @@ export default function DashboardPage() {
         </h2>
         <p className="mb-6 text-[13px] text-[#74798C]">{weekRange.label}</p>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_1fr]">
           {/* Donut chart */}
-          <div className="rounded-xl bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-[#C8C8F0] bg-white p-6">
             <WeeklyGoalChart
               sessionsCount={thisWeekSessions.length}
               goal={weeklyGoal}
@@ -178,37 +182,61 @@ export default function DashboardPage() {
           </div>
 
           {/* Stats cards */}
-          <div className="flex flex-col gap-6 lg:col-span-2">
-            <div className="flex-1 rounded-xl bg-white p-6 shadow-sm">
+          <div className="flex flex-col gap-6">
+            <div className="rounded-2xl border border-[#C8C8F0] bg-white p-6">
               <p className="text-[13px] text-[#74798C]">
-                Durée d&apos;activité
+                Dur&eacute;e d&apos;activit&eacute;
               </p>
               <p className="mt-2">
                 <span className="text-[28px] font-bold text-[#0B23F4]">
                   {thisWeekDuration}
                 </span>
-                <span className="ml-2 text-[14px] text-[#74798C]">
+                <span className="ml-2 text-[14px] text-[#0B23F4]/50">
                   minutes
                 </span>
               </p>
             </div>
-            <div className="flex-1 rounded-xl bg-white p-6 shadow-sm">
+            <div className="flex-1 rounded-2xl border border-[#C8C8F0] bg-white p-6">
               <p className="text-[13px] text-[#74798C]">Distance</p>
               <p className="mt-2">
                 <span className="text-[28px] font-bold text-[#FF0101]">
                   {thisWeekDistance}
                 </span>
-                <span className="ml-2 text-[14px] text-[#74798C]">
-                  kilomètres
+                <span className="ml-2 text-[14px] text-[#FF0101]/50">
+                  kilom&egrave;tres
                 </span>
               </p>
             </div>
           </div>
         </div>
+        {/* AI Planning CTA */}
+        <div className="mt-10 rounded-2xl border border-[#E0E0E0] bg-white px-8 py-14 text-center">
+          <svg className="mx-auto mb-6" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="12" width="44" height="36" rx="4" stroke="#0B23F4" strokeWidth="2" fill="none"/>
+            <line x1="6" y1="22" x2="50" y2="22" stroke="#0B23F4" strokeWidth="2"/>
+            <line x1="18" y1="6" x2="18" y2="16" stroke="#0B23F4" strokeWidth="2" strokeLinecap="round"/>
+            <line x1="38" y1="6" x2="38" y2="16" stroke="#0B23F4" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M15 29l2.5 2.5 5-5" stroke="#0B23F4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M15 38l2.5 2.5 5-5" stroke="#0B23F4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M29 29l2.5 2.5 5-5" stroke="#0B23F4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M29 38l2.5 2.5 5-5" stroke="#0B23F4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <h3 className="mb-3 text-[24px] font-bold text-[#20253A]">
+            Cr&eacute;ez votre planning d&apos;entra&icirc;nement intelligent
+          </h3>
+          <p className="mb-8 text-[14px] leading-relaxed text-[#74798C]">
+            Notre IA vous aide &agrave; b&acirc;tir un planning 100 % personnalis&eacute; selon vos objectifs, votre niveau et votre emploi du temps.
+          </p>
+          <button
+            onClick={() => router.push("/training-plan")}
+            className="cursor-pointer rounded-full bg-[#0B23F4] px-10 py-3.5 text-[14px] font-medium text-white transition-colors hover:bg-[#0919C5]">
+            Commencer
+          </button>
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="mt-8 border-t border-[#E0E0E0] px-[10%] py-5">
+      <footer className="mt-8 border-t border-[#E0E0E0] bg-white px-[10%] py-5">
         <div className="flex items-center justify-between">
           <p className="text-[12px] text-[#74798C]">
             &copy;Sportsee Tous droits réservés

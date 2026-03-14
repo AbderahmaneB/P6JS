@@ -22,7 +22,7 @@ export default function WeeklyGoalChart({
     { name: "Réalisées", value: sessionsCount },
     { name: "Restantes", value: remaining },
   ];
-  const COLORS = ["#0B23F4", "#E0E0E0"];
+  const COLORS = ["#0B23F4", "#C9CBFF"];
 
   return (
     <div className="flex flex-col items-center">
@@ -30,7 +30,7 @@ export default function WeeklyGoalChart({
         <span className="text-[32px] font-bold text-[#0B23F4]">
           x{sessionsCount}
         </span>
-        <span className="ml-2 text-[13px] text-[#74798C]">
+        <span className="ml-2 text-[16px] text-[#8B8FF5]">
           sur objectif de {goal}
         </span>
       </div>
