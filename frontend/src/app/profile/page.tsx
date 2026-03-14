@@ -98,9 +98,7 @@ export default function ProfilePage() {
 
       <main className="flex-1 px-[10%] py-8">
         <div className="flex gap-10">
-          {/* Left column - Profile */}
           <div className="w-[420px] shrink-0">
-            {/* Profile card */}
             <div className="mb-6 rounded-2xl border border-[#E0E0E0] bg-white px-10 py-10">
               <div className="flex items-center gap-5">
                 <div className="h-[90px] w-[90px] overflow-hidden rounded-xl bg-gray-200">
@@ -123,7 +121,6 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* Profile details */}
             <div className="rounded-2xl border border-[#E0E0E0] bg-white px-10 py-8">
               <h2 className="mb-5 text-[20px] font-semibold text-[#20253A]">
                 Votre profil
@@ -150,7 +147,6 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Right column - Statistics */}
           <div className="flex-1">
             <div className="mb-6">
               <h2 className="text-[22px] font-semibold text-[#20253A]">
@@ -187,7 +183,6 @@ export default function ProfilePage() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="mt-auto border-t border-[#E0E0E0] bg-white px-[10%] py-5">
         <div className="flex items-center justify-between">
           <p className="text-[12px] text-[#74798C]">

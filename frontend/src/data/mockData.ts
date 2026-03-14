@@ -42,7 +42,6 @@ export interface MockUser {
   runningData: RunningSession[];
 }
 
-// Mock data mirroring the backend structure
 export const mockUsers: MockUser[] = [
   {
     id: "user123",
@@ -131,7 +130,6 @@ export const mockUsers: MockUser[] = [
   },
 ];
 
-// Mock login function
 export function mockLogin(username: string, password: string) {
   const user = mockUsers.find(
     (u) => u.username === username && u.password === password
@@ -143,7 +141,6 @@ export function mockLogin(username: string, password: string) {
   };
 }
 
-// Mock get user info
 export function mockGetUserInfo(userId: string): UserInfo | null {
   const user = mockUsers.find((u) => u.id === userId);
   if (!user) return null;
@@ -181,7 +178,6 @@ export function mockGetUserInfo(userId: string): UserInfo | null {
   };
 }
 
-// Mock get user activity
 export function mockGetUserActivity(
   userId: string,
   startWeek: string,

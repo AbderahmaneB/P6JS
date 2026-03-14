@@ -21,7 +21,6 @@ interface TrainingPlan {
 
 type Step = "intro" | "objective" | "date" | "result";
 
-// ── ICS export ────────────────────────────────────────────────────────────────
 function generateICS(plan: TrainingPlan, startDate: string): string {
   const DAY_OFFSETS: Record<string, number> = {
     Lundi: 0, Mardi: 1, Mercredi: 2, Jeudi: 3,
@@ -37,7 +36,6 @@ function generateICS(plan: TrainingPlan, startDate: string): string {
   ];
 
   const base = new Date(startDate);
-  // Find the Monday of the start week
   const dayOfWeek = base.getDay();
   const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
   base.setDate(base.getDate() + diffToMonday);
@@ -84,8 +82,6 @@ function downloadICS(plan: TrainingPlan, startDate: string) {
   a.click();
   URL.revokeObjectURL(url);
 }
-
-// ── Components ────────────────────────────────────────────────────────────────
 
 function CalendarIcon() {
   return (
@@ -151,8 +147,6 @@ function WeekAccordion({ week }: { week: TrainingWeek }) {
   );
 }
 
-// ── Main page ─────────────────────────────────────────────────────────────────
-
 export default function TrainingPlanPage() {
   const [step, setStep] = useState<Step>("intro");
   const [objective, setObjective] = useState("");
@@ -195,7 +189,6 @@ export default function TrainingPlanPage() {
 
       <main className="flex flex-1 items-center justify-center px-4 py-12 w-full">
 
-        {/* ── INTRO ── */}
         {step === "intro" && (
           <div className="w-full max-w-4xl rounded-2xl bg-white px-16 py-14 text-center shadow-sm">
             <div className="flex justify-center"><CalendarIcon /></div>
@@ -215,7 +208,6 @@ export default function TrainingPlanPage() {
           </div>
         )}
 
-        {/* ── OBJECTIVE ── */}
         {step === "objective" && (
           <div className="w-full max-w-4xl rounded-2xl bg-white px-16 py-14 text-center shadow-sm">
             <div className="flex justify-center"><TargetIcon /></div>
@@ -246,7 +238,6 @@ export default function TrainingPlanPage() {
           </div>
         )}
 
-        {/* ── DATE ── */}
         {step === "date" && (
           <div className="w-full max-w-4xl rounded-2xl bg-white px-16 py-14 text-center shadow-sm">
             <div className="flex justify-center"><CalendarIcon /></div>
@@ -287,7 +278,6 @@ export default function TrainingPlanPage() {
           </div>
         )}
 
-        {/* ── RESULT ── */}
         {step === "result" && plan && (
           <div className="w-full max-w-xl">
             <div className="mb-6 text-center">

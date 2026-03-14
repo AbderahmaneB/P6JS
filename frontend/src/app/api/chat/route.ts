@@ -50,7 +50,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Messages invalides." }, { status: 400 });
     }
 
-    // Validate and sanitize messages
     const sanitized = messages
       .filter((m: { role: string; content: string }) =>
         ["user", "assistant"].includes(m.role) &&
@@ -62,7 +61,6 @@ export async function POST(req: NextRequest) {
         content: m.content.slice(0, MAX_USER_MESSAGE_LENGTH),
       }));
 
-    // Keep last 10 messages to limit token usage
     const recentMessages = sanitized.slice(-10);
 
     const systemPrompt = buildSystemPrompt(userData);

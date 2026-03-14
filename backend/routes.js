@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const users = require("./data.json");
 
-const SECRET_KEY = "your-secret-key-12345"; // In a real app, this would be in environment variables
+const SECRET_KEY = "your-secret-key-12345";
 
 const getUserById = (userId) => {
   return users.find((user) => user.id === userId);
@@ -13,10 +13,6 @@ const router = express.Router();
 
 const { authenticateToken, generateToken } = require("./middleware");
 
-/**
- * POST /api/login ✅
- * Returns a token for the user
- */
 router.post("/api/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -39,17 +35,12 @@ router.post("/api/login", (req, res) => {
   });
 });
 
-/** ✅
- * GET /api/user-info
- * Returns user information including profile, goals, and statistics
- */
 router.get("/api/user-info", authenticateToken, (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const decodedToken = jwt.verify(token, SECRET_KEY);
   const user = getUserById(decodedToken.userId);
   const runningData = user.runningData;
 
-  // Calculate overall statistics
   const totalDistance = runningData.reduce(
     (sum, session) => sum + session.distance,
     0
@@ -64,7 +55,6 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
     0
   );
 
-  // Extract user profile information
   const userProfile = {
     firstName: user.userInfos.firstName,
     lastName: user.userInfos.lastName,
@@ -87,10 +77,6 @@ router.get("/api/user-info", authenticateToken, (req, res) => {
   });
 });
 
-/**
- * GET /api/user-activity
- * Returns running sessions between startWeek and endWeek
- */
 router.get("/api/user-activity", authenticateToken, (req, res) => {
   const { startWeek, endWeek } = req.query;
   
@@ -105,18 +91,15 @@ router.get("/api/user-activity", authenticateToken, (req, res) => {
 
   const runningData = user.runningData;
 
-  // Convert week strings to Date objects
   const startDate = new Date(startWeek);
   const endDate = new Date(endWeek);
   const now = new Date();
   
-  // Filter sessions between startWeek and endWeek, excluding future dates
   const filteredSessions = runningData.filter((session) => {
     const sessionDate = new Date(session.date);
     return sessionDate >= startDate && sessionDate <= endDate && sessionDate <= now;
   });
 
-  // Sort by date ascending
   const sortedSessions = filteredSessions.sort((a, b) => 
     new Date(a.date) - new Date(b.date)
   );

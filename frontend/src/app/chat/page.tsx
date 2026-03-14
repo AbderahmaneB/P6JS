@@ -140,7 +140,6 @@ export default function ChatPage() {
   return (
     <div className="flex h-screen flex-col bg-white">
 
-      {/* Top bar */}
       <div className="flex items-center justify-end px-8 py-4">
         <button
           onClick={() => router.back()}
@@ -151,7 +150,6 @@ export default function ChatPage() {
         </button>
       </div>
 
-      {/* Messages area */}
       <div className="flex-1 overflow-y-auto px-8 py-4">
         {!hasMessages && !isLoading && (
           <div className="flex h-full items-start justify-center pt-16">
@@ -204,11 +202,8 @@ export default function ChatPage() {
         </div>
       </div>
 
-      {/* Bottom area */}
       <div className="px-8 pb-6">
         <div className="mx-auto max-w-2xl">
-
-          {/* Input box */}
           <div className="rounded-2xl border border-[#E8E8F0] bg-white px-4 py-3 shadow-sm">
             <div className="flex items-start gap-3">
               <SparkleIcon />
@@ -238,7 +233,6 @@ export default function ChatPage() {
             </div>
           </div>
 
-          {/* Suggestions */}
           <div className="mt-3 grid grid-cols-3 gap-3">
             {SUGGESTIONS.map((s) => (
               <button

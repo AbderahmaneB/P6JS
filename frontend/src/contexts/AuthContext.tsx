@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = (token: string, userId: string) => {
-    Cookies.set("token", token, { expires: 1 }); // 24h
+    Cookies.set("token", token, { expires: 1 });
     Cookies.set("userId", userId, { expires: 1 });
     setUser({ token, userId });
   };

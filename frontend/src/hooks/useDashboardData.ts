@@ -51,7 +51,6 @@ export function useDashboardData(): DashboardData {
       const thisSunday = new Date(thisMonday);
       thisSunday.setDate(thisMonday.getDate() + 6);
 
-      // Last 4 weeks for charts
       const fourWeeksAgo = new Date(thisMonday);
       fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
 
@@ -62,7 +61,6 @@ export function useDashboardData(): DashboardData {
       );
       setRecentSessions(recent);
 
-      // This week only
       const thisWeek = recent.filter((s) => {
         const d = new Date(s.date);
         return d >= thisMonday && d <= thisSunday;

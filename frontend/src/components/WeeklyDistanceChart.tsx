@@ -60,8 +60,7 @@ function computeAverage(data: WeekData[]): number {
   return Math.round(total / data.length);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function CustomTooltip({ active, payload }: any) {
+function CustomTooltip({ active, payload }: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
   if (!active || !payload || !payload.length) return null;
   const { km, label } = payload[0].payload as WeekData;
   return (

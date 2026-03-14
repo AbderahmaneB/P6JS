@@ -9,7 +9,6 @@ import {
 
 const API_BASE_URL = "http://localhost:8000/api";
 
-// Toggle between mock and real API
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === "true";
 
 const apiClient = axios.create({
@@ -43,7 +42,6 @@ export async function loginUser(
 
 export async function getUserInfo(token: string): Promise<UserInfo> {
   if (USE_MOCK) {
-    // Extract userId from mock token
     const userId = token.replace("mock-token-", "");
     const result = mockGetUserInfo(userId);
     if (!result) throw new Error("User not found");

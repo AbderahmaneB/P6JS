@@ -33,12 +33,8 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Left side - Login form */}
       <div className="flex w-full flex-col bg-[#ECEDF9] px-10 py-8 lg:w-1/2">
-        {/* Logo */}
         <Logo />
-
-        {/* Form container */}
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-[400px] rounded-2xl bg-white px-10 py-14">
             <h1 className="text-[28px] font-semibold leading-[1] text-[#0B23F4]">
@@ -106,7 +102,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right side - Image */}
       <div className="relative hidden lg:block lg:w-1/2">
         <Image
           src="/marathon.jpg"
@@ -115,7 +110,6 @@ export default function LoginPage() {
           className="object-cover"
           priority
         />
-        {/* Overlay bubble */}
         <div className="absolute bottom-8 right-8 max-w-[280px] rounded-full bg-white/80 px-6 py-3 text-[11px] leading-[1.5] text-[#20253A] backdrop-blur-sm">
           Analysez vos performances en un clin d&apos;oeil, suivez vos progrès
           et atteignez vos objectifs.

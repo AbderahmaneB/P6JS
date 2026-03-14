@@ -91,7 +91,6 @@ export default function DashboardPage() {
       <Header />
 
       <main className="flex-1 px-[10%] py-8">
-        {/* AI Coach banner */}
         <div className="mb-8 flex items-center justify-between rounded-2xl bg-white px-8 py-5">
           <div className="flex items-center gap-3">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +110,6 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        {/* User profile section */}
         <div className="mb-10 flex items-center gap-6 rounded-2xl bg-white px-8 py-6 shadow-sm">
           <div className="h-[80px] w-[80px] overflow-hidden rounded-xl bg-gray-200">
             {profile.profilePicture && (
@@ -154,7 +152,6 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Performance charts */}
         <h2 className="mb-6 text-[22px] font-semibold text-[#20253A]">
           Vos dernières performances
         </h2>
@@ -166,14 +163,12 @@ export default function DashboardPage() {
           <HeartRateChart sessions={recentSessions} dateRange={last4Range} />
         </div>
 
-        {/* This week section */}
         <h2 className="mb-1 text-[22px] font-semibold text-[#20253A]">
           Cette semaine
         </h2>
         <p className="mb-6 text-[13px] text-[#74798C]">{weekRange.label}</p>
 
         <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_1fr]">
-          {/* Donut chart */}
           <div className="rounded-2xl border border-[#C8C8F0] bg-white p-6">
             <WeeklyGoalChart
               sessionsCount={thisWeekSessions.length}
@@ -181,7 +176,6 @@ export default function DashboardPage() {
             />
           </div>
 
-          {/* Stats cards */}
           <div className="flex flex-col gap-6">
             <div className="rounded-2xl border border-[#C8C8F0] bg-white p-6">
               <p className="text-[13px] text-[#74798C]">
@@ -209,7 +203,6 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
-        {/* AI Planning CTA */}
         <div className="mt-10 rounded-2xl border border-[#E0E0E0] bg-white px-8 py-14 text-center">
           <svg className="mx-auto mb-6" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="6" y="12" width="44" height="36" rx="4" stroke="#0B23F4" strokeWidth="2" fill="none"/>
@@ -235,7 +228,6 @@ export default function DashboardPage() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="mt-8 border-t border-[#E0E0E0] bg-white px-[10%] py-5">
         <div className="flex items-center justify-between">
           <p className="text-[12px] text-[#74798C]">
